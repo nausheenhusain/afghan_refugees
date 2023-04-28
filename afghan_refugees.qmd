@@ -1,0 +1,108 @@
+---
+title: "Afghan refugees"
+author: "Nausheen Husain"
+toc: true
+number-sections: true
+format:
+  html:
+    theme: default
+    code-fold: true
+    code-tools: true
+    code-line-numbers: true
+  pdf:
+    geometry: 
+      - top=30mm
+      - left=30mm
+  docx: default
+project:
+  type: website
+  output-dir: docs
+---
+
+## Introduction
+
+This is a living document in which I am doing analysis of available refugee and asylum data, specifically for those coming to the U.S. from Afghanistan. I will be using the R libraries tidyverse and ggplot2 to ask and answer basic questions about some datasets we currently have access to. The data will come from the following sources:
+
+* [Chris Parson's refugee dataset](https://www.refugeeresettlementdata.com/data.html)
+    + This has already been converted from .dta to .csv using Pandas.
+* [Wrapsnet data](https://www.wrapsnet.org/admissions-and-arrivals/)
+* [UNHCR refugee data](https://www.unhcr.org/refugee-statistics/download/?url=uu9qRu)
+* We may also have asylum data from [TRAC](https://trac.syr.edu/phptools/immigration/asyfile/)
+
+I will try to publish this analysis on [Github Pages](https://quarto.org/docs/publishing/github-pages.html), and it will be used for a reporting project on this same topic with Jazzmin Jiwa.
+
+
+```{r}
+#| label: load-pkgs
+#| code-summary: "Packages"
+#| message: false
+
+library(tidyverse)
+library(ggplot2)
+```
+
+## Securing our refugee microdata
+
+**From Chris Parson's data:** The first thing I want to do is combine two separate datasets with refugee microdata, and narrow the data down to only show rows where the birth or citizenship country is 'Afghanistan.' (I did this separately in R.) The below dataframe includes both datasets from Parson's data, where each row has 'afghanistan' for either the birth or citizenship country. It includes a column I added to indicate the current age of each refugee.
+
+```{r}
+#| label: data-head
+
+af_ref <- read.csv("af_refugee_microdata.csv",stringsAsFactors=F)
+head(af_ref)
+```
+This dataframe has `r nrow(af_ref)` rows, which means it looks at `r nrow(af_ref)` individual refugees.
+
+## Exploring our data by year
+
+The most important question for this particular reporting project is, have incoming refugees from Afghanistan increased over the years, particularly after the U.S. invaded Afghanistan in 2001? Grouping the data by year looks like this:
+
+```{r}
+#| label: by-year
+
+by_year <- group_by(af_ref,year)
+by_year <- summarize(by_year,refugees=n())
+print(by_year, n = Inf)
+```
+
+Our most important finding from this view is that we don't have any data beyond 2008. We also see that the years the U.S. saw the most incoming refugees were 1983 and 2001. Let's see what this looks like:
+
+```{r}
+#| label: fig-line
+#| fig-cap: "Incoming refugees from Afghanistan by year, 1975-2008"
+
+ggplot(by_year, aes(x=year, y=refugees))+geom_line()
+
+```
+
+Let's add our PRM data, which goes from 2008 to 2023, and should give us a fuller picture of how incoming refugee numbers have fluctuated over time. [We should probably FOIA for pre-2008 data from PRM in order to be able to compare the numbers with Chris Parson's microdata.]
+
+```{r}
+#| label: append-PRM
+
+af_ref_PRM <- read.csv("PRM_af_year.csv",stringsAsFactors=F)
+PRM_by_year <- select(af_ref_PRM, year, fy_total)
+PRM_by_year <- filter(PRM_by_year,year>2008)
+PRM_by_year <- arrange(PRM_by_year,year)
+colnames(PRM_by_year)[2]="refugees"
+all_years <- rbind(by_year, PRM_by_year)
+all_years <- all_years[-c(35), ]
+print(all_years,n=Inf)
+```
+
+Some notes on this tibble: This combines two different datasets -- one downloaded from the State Dept's [Bureau of Population, Refugees, and Migration](https://www.wrapsnet.org/admissions-and-arrivals/) and one from [Chris Parson's microdata](https://www.refugeeresettlementdata.com/) on refugee resettlement. Both of these datasets were narrowed to just total refugees by year from Afghanistan and then combined. Chris Parson's data is from 1975 to 2008, and the PRM data is 2009 to 2023. <span style="color:purple">FOIA: Ideally, we will be able to request PRM data from before 2008 in order to be able to compare Parson's data to the State Dept's.</span> We removed one row from Parson's data in which year was N/A and refugees was 2.
+
+Let's see what it looks like if we create a line chart out of our new, more complete dataset.
+
+```{r}
+#| label: fig-line2
+#| fig-cap: "Incoming refugees from Afghanistan by year, 1975-2023"
+
+ggplot(all_years, aes(x=year,y=refugees,group = 1))+geom_point()+geom_line()+labs(x = "Year", y = "Number of incoming refugees from Afghanistan", title = "1983, 2001 and 2016 saw record highs in incoming Afghan refugees")+annotate("text", x=1990, y=2950, label="Highest amount of incoming Afghan refugees in 1983", color="red")
+```
+
+@fig-line2 tells us some notable information for our reporting: the highest amounts of incoming refugees are now arriving in 1983, 2016 and 2001. We should think through what was happening around these years to create a sharp increase in incoming refugees -- there are some obvious answers here. I think it'd also be useful to compare these numbers to numbers from Iraq.
+
+## Exploring our microdata by location
+
+tktktk

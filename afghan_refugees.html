@@ -83,7 +83,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">1</span> Introduction</a></li>
   <li><a href="#securing-our-refugee-microdata" id="toc-securing-our-refugee-microdata" class="nav-link" data-scroll-target="#securing-our-refugee-microdata"><span class="header-section-number">2</span> Securing our refugee microdata</a></li>
   <li><a href="#exploring-our-data-by-year" id="toc-exploring-our-data-by-year" class="nav-link" data-scroll-target="#exploring-our-data-by-year"><span class="header-section-number">3</span> Exploring our data by year</a></li>
-  <li><a href="#exploring-our-microdata-by-location" id="toc-exploring-our-microdata-by-location" class="nav-link" data-scroll-target="#exploring-our-microdata-by-location"><span class="header-section-number">4</span> Exploring our microdata by location</a></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="afghan_refugees.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li><li><a href="afghan_refugees.docx"><i class="bi bi-file-word"></i>MS Word</a></li></ul></div></nav>
 </div>
@@ -329,10 +328,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p><a href="#fig-line2">Figure&nbsp;2</a> tells us some notable information for our reporting: the highest amounts of incoming refugees are now arriving in 1983, 2016 and 2001. We should think through what was happening around these years to create a sharp increase in incoming refugees – there are some obvious answers here. I think it’d also be useful to compare these numbers to numbers from Iraq.</p>
-</section>
-<section id="exploring-our-microdata-by-location" class="level2" data-number="4">
-<h2 data-number="4" class="anchored" data-anchor-id="exploring-our-microdata-by-location"><span class="header-section-number">4</span> Exploring our microdata by location</h2>
-<p>tktktk</p>
 <!-- -->
 
 </section>
@@ -639,95 +634,94 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb11-14"><a href="#cb11-14"></a><span class="co">      - top=30mm</span></span>
 <span id="cb11-15"><a href="#cb11-15"></a><span class="co">      - left=30mm</span></span>
 <span id="cb11-16"><a href="#cb11-16"></a><span class="co">  docx: default</span></span>
-<span id="cb11-17"><a href="#cb11-17"></a><span class="co">---</span></span>
-<span id="cb11-18"><a href="#cb11-18"></a></span>
-<span id="cb11-19"><a href="#cb11-19"></a><span class="fu">## Introduction</span></span>
-<span id="cb11-20"><a href="#cb11-20"></a></span>
-<span id="cb11-21"><a href="#cb11-21"></a>This is a living document in which I am doing analysis of available refugee and asylum data, specifically for those coming to the U.S. from Afghanistan. I will be using the R libraries tidyverse and ggplot2 to ask and answer basic questions about some datasets we currently have access to. The data will come from the following sources:</span>
-<span id="cb11-22"><a href="#cb11-22"></a></span>
-<span id="cb11-23"><a href="#cb11-23"></a><span class="ss">* </span><span class="co">[</span><span class="ot">Chris Parson's refugee dataset</span><span class="co">](https://www.refugeeresettlementdata.com/data.html)</span></span>
-<span id="cb11-24"><a href="#cb11-24"></a><span class="ss">    + </span>This has already been converted from .dta to .csv using Pandas.</span>
-<span id="cb11-25"><a href="#cb11-25"></a><span class="ss">* </span><span class="co">[</span><span class="ot">Wrapsnet data</span><span class="co">](https://www.wrapsnet.org/admissions-and-arrivals/)</span></span>
-<span id="cb11-26"><a href="#cb11-26"></a><span class="ss">* </span><span class="co">[</span><span class="ot">UNHCR refugee data</span><span class="co">](https://www.unhcr.org/refugee-statistics/download/?url=uu9qRu)</span></span>
-<span id="cb11-27"><a href="#cb11-27"></a><span class="ss">* </span>We may also have asylum data from <span class="co">[</span><span class="ot">TRAC</span><span class="co">](https://trac.syr.edu/phptools/immigration/asyfile/)</span></span>
-<span id="cb11-28"><a href="#cb11-28"></a></span>
-<span id="cb11-29"><a href="#cb11-29"></a>I will try to publish this analysis on <span class="co">[</span><span class="ot">Github Pages</span><span class="co">](https://quarto.org/docs/publishing/github-pages.html)</span>, and it will be used for a reporting project on this same topic with Jazzmin Jiwa.</span>
-<span id="cb11-30"><a href="#cb11-30"></a></span>
+<span id="cb11-17"><a href="#cb11-17"></a><span class="an">project:</span></span>
+<span id="cb11-18"><a href="#cb11-18"></a><span class="co">  type: website</span></span>
+<span id="cb11-19"><a href="#cb11-19"></a><span class="co">  output-dir: docs</span></span>
+<span id="cb11-20"><a href="#cb11-20"></a><span class="co">---</span></span>
+<span id="cb11-21"><a href="#cb11-21"></a></span>
+<span id="cb11-22"><a href="#cb11-22"></a><span class="fu">## Introduction</span></span>
+<span id="cb11-23"><a href="#cb11-23"></a></span>
+<span id="cb11-24"><a href="#cb11-24"></a>This is a living document in which I am doing analysis of available refugee and asylum data, specifically for those coming to the U.S. from Afghanistan. I will be using the R libraries tidyverse and ggplot2 to ask and answer basic questions about some datasets we currently have access to. The data will come from the following sources:</span>
+<span id="cb11-25"><a href="#cb11-25"></a></span>
+<span id="cb11-26"><a href="#cb11-26"></a><span class="ss">* </span><span class="co">[</span><span class="ot">Chris Parson's refugee dataset</span><span class="co">](https://www.refugeeresettlementdata.com/data.html)</span></span>
+<span id="cb11-27"><a href="#cb11-27"></a><span class="ss">    + </span>This has already been converted from .dta to .csv using Pandas.</span>
+<span id="cb11-28"><a href="#cb11-28"></a><span class="ss">* </span><span class="co">[</span><span class="ot">Wrapsnet data</span><span class="co">](https://www.wrapsnet.org/admissions-and-arrivals/)</span></span>
+<span id="cb11-29"><a href="#cb11-29"></a><span class="ss">* </span><span class="co">[</span><span class="ot">UNHCR refugee data</span><span class="co">](https://www.unhcr.org/refugee-statistics/download/?url=uu9qRu)</span></span>
+<span id="cb11-30"><a href="#cb11-30"></a><span class="ss">* </span>We may also have asylum data from <span class="co">[</span><span class="ot">TRAC</span><span class="co">](https://trac.syr.edu/phptools/immigration/asyfile/)</span></span>
 <span id="cb11-31"><a href="#cb11-31"></a></span>
-<span id="cb11-34"><a href="#cb11-34"></a><span class="in">```{r}</span></span>
-<span id="cb11-35"><a href="#cb11-35"></a><span class="co">#| label: load-pkgs</span></span>
-<span id="cb11-36"><a href="#cb11-36"></a><span class="co">#| code-summary: "Packages"</span></span>
-<span id="cb11-37"><a href="#cb11-37"></a><span class="co">#| message: false</span></span>
-<span id="cb11-38"><a href="#cb11-38"></a></span>
-<span id="cb11-39"><a href="#cb11-39"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb11-40"><a href="#cb11-40"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb11-41"><a href="#cb11-41"></a><span class="in">```</span></span>
-<span id="cb11-42"><a href="#cb11-42"></a></span>
-<span id="cb11-43"><a href="#cb11-43"></a><span class="fu">## Securing our refugee microdata</span></span>
-<span id="cb11-44"><a href="#cb11-44"></a></span>
-<span id="cb11-45"><a href="#cb11-45"></a>**From Chris Parson's data:** The first thing I want to do is combine two separate datasets with refugee microdata, and narrow the data down to only show rows where the birth or citizenship country is 'Afghanistan.' (I did this separately in R.) The below dataframe includes both datasets from Parson's data, where each row has 'afghanistan' for either the birth or citizenship country. It includes a column I added to indicate the current age of each refugee.</span>
-<span id="cb11-46"><a href="#cb11-46"></a></span>
-<span id="cb11-49"><a href="#cb11-49"></a><span class="in">```{r}</span></span>
-<span id="cb11-50"><a href="#cb11-50"></a><span class="co">#| label: data-head</span></span>
-<span id="cb11-51"><a href="#cb11-51"></a></span>
-<span id="cb11-52"><a href="#cb11-52"></a>af_ref <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"af_refugee_microdata.csv"</span>,<span class="at">stringsAsFactors=</span>F)</span>
-<span id="cb11-53"><a href="#cb11-53"></a><span class="fu">head</span>(af_ref)</span>
-<span id="cb11-54"><a href="#cb11-54"></a><span class="in">```</span></span>
-<span id="cb11-55"><a href="#cb11-55"></a>This dataframe has <span class="in">`r nrow(af_ref)`</span> rows, which means it looks at <span class="in">`r nrow(af_ref)`</span> individual refugees.</span>
-<span id="cb11-56"><a href="#cb11-56"></a></span>
-<span id="cb11-57"><a href="#cb11-57"></a><span class="fu">## Exploring our data by year</span></span>
-<span id="cb11-58"><a href="#cb11-58"></a></span>
-<span id="cb11-59"><a href="#cb11-59"></a>The most important question for this particular reporting project is, have incoming refugees from Afghanistan increased over the years, particularly after the U.S. invaded Afghanistan in 2001? Grouping the data by year looks like this:</span>
-<span id="cb11-60"><a href="#cb11-60"></a></span>
-<span id="cb11-63"><a href="#cb11-63"></a><span class="in">```{r}</span></span>
-<span id="cb11-64"><a href="#cb11-64"></a><span class="co">#| label: by-year</span></span>
-<span id="cb11-65"><a href="#cb11-65"></a></span>
-<span id="cb11-66"><a href="#cb11-66"></a>by_year <span class="ot">&lt;-</span> <span class="fu">group_by</span>(af_ref,year)</span>
-<span id="cb11-67"><a href="#cb11-67"></a>by_year <span class="ot">&lt;-</span> <span class="fu">summarize</span>(by_year,<span class="at">refugees=</span><span class="fu">n</span>())</span>
-<span id="cb11-68"><a href="#cb11-68"></a><span class="fu">print</span>(by_year, <span class="at">n =</span> <span class="cn">Inf</span>)</span>
-<span id="cb11-69"><a href="#cb11-69"></a><span class="in">```</span></span>
-<span id="cb11-70"><a href="#cb11-70"></a></span>
-<span id="cb11-71"><a href="#cb11-71"></a>Our most important finding from this view is that we don't have any data beyond 2008. We also see that the years the U.S. saw the most incoming refugees were 1983 and 2001. Let's see what this looks like:</span>
-<span id="cb11-72"><a href="#cb11-72"></a></span>
-<span id="cb11-75"><a href="#cb11-75"></a><span class="in">```{r}</span></span>
-<span id="cb11-76"><a href="#cb11-76"></a><span class="co">#| label: fig-line</span></span>
-<span id="cb11-77"><a href="#cb11-77"></a><span class="co">#| fig-cap: "Incoming refugees from Afghanistan by year, 1975-2008"</span></span>
-<span id="cb11-78"><a href="#cb11-78"></a></span>
-<span id="cb11-79"><a href="#cb11-79"></a><span class="fu">ggplot</span>(by_year, <span class="fu">aes</span>(<span class="at">x=</span>year, <span class="at">y=</span>refugees))<span class="sc">+</span><span class="fu">geom_line</span>()</span>
-<span id="cb11-80"><a href="#cb11-80"></a></span>
-<span id="cb11-81"><a href="#cb11-81"></a><span class="in">```</span></span>
-<span id="cb11-82"><a href="#cb11-82"></a></span>
-<span id="cb11-83"><a href="#cb11-83"></a>Let's add our PRM data, which goes from 2008 to 2023, and should give us a fuller picture of how incoming refugee numbers have fluctuated over time. <span class="co">[</span><span class="ot">We should probably FOIA for pre-2008 data from PRM in order to be able to compare the numbers with Chris Parson's microdata.</span><span class="co">]</span></span>
-<span id="cb11-84"><a href="#cb11-84"></a></span>
-<span id="cb11-87"><a href="#cb11-87"></a><span class="in">```{r}</span></span>
-<span id="cb11-88"><a href="#cb11-88"></a><span class="co">#| label: append-PRM</span></span>
-<span id="cb11-89"><a href="#cb11-89"></a></span>
-<span id="cb11-90"><a href="#cb11-90"></a>af_ref_PRM <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"PRM_af_year.csv"</span>,<span class="at">stringsAsFactors=</span>F)</span>
-<span id="cb11-91"><a href="#cb11-91"></a>PRM_by_year <span class="ot">&lt;-</span> <span class="fu">select</span>(af_ref_PRM, year, fy_total)</span>
-<span id="cb11-92"><a href="#cb11-92"></a>PRM_by_year <span class="ot">&lt;-</span> <span class="fu">filter</span>(PRM_by_year,year<span class="sc">&gt;</span><span class="dv">2008</span>)</span>
-<span id="cb11-93"><a href="#cb11-93"></a>PRM_by_year <span class="ot">&lt;-</span> <span class="fu">arrange</span>(PRM_by_year,year)</span>
-<span id="cb11-94"><a href="#cb11-94"></a><span class="fu">colnames</span>(PRM_by_year)[<span class="dv">2</span>]<span class="ot">=</span><span class="st">"refugees"</span></span>
-<span id="cb11-95"><a href="#cb11-95"></a>all_years <span class="ot">&lt;-</span> <span class="fu">rbind</span>(by_year, PRM_by_year)</span>
-<span id="cb11-96"><a href="#cb11-96"></a>all_years <span class="ot">&lt;-</span> all_years[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">35</span>), ]</span>
-<span id="cb11-97"><a href="#cb11-97"></a><span class="fu">print</span>(all_years,<span class="at">n=</span><span class="cn">Inf</span>)</span>
-<span id="cb11-98"><a href="#cb11-98"></a><span class="in">```</span></span>
-<span id="cb11-99"><a href="#cb11-99"></a></span>
-<span id="cb11-100"><a href="#cb11-100"></a>Some notes on this tibble: This combines two different datasets -- one downloaded from the State Dept's <span class="co">[</span><span class="ot">Bureau of Population, Refugees, and Migration</span><span class="co">](https://www.wrapsnet.org/admissions-and-arrivals/)</span> and one from <span class="co">[</span><span class="ot">Chris Parson's microdata</span><span class="co">](https://www.refugeeresettlementdata.com/)</span> on refugee resettlement. Both of these datasets were narrowed to just total refugees by year from Afghanistan and then combined. Chris Parson's data is from 1975 to 2008, and the PRM data is 2009 to 2023. <span class="kw">&lt;span</span> <span class="er">style</span><span class="ot">=</span><span class="st">"color:purple"</span><span class="kw">&gt;</span>FOIA: Ideally, we will be able to request PRM data from before 2008 in order to be able to compare Parson's data to the State Dept's.<span class="kw">&lt;/span&gt;</span> We removed one row from Parson's data in which year was N/A and refugees was 2.</span>
-<span id="cb11-101"><a href="#cb11-101"></a></span>
-<span id="cb11-102"><a href="#cb11-102"></a>Let's see what it looks like if we create a line chart out of our new, more complete dataset.</span>
-<span id="cb11-103"><a href="#cb11-103"></a></span>
-<span id="cb11-106"><a href="#cb11-106"></a><span class="in">```{r}</span></span>
-<span id="cb11-107"><a href="#cb11-107"></a><span class="co">#| label: fig-line2</span></span>
-<span id="cb11-108"><a href="#cb11-108"></a><span class="co">#| fig-cap: "Incoming refugees from Afghanistan by year, 1975-2023"</span></span>
-<span id="cb11-109"><a href="#cb11-109"></a></span>
-<span id="cb11-110"><a href="#cb11-110"></a><span class="fu">ggplot</span>(all_years, <span class="fu">aes</span>(<span class="at">x=</span>year,<span class="at">y=</span>refugees,<span class="at">group =</span> <span class="dv">1</span>))<span class="sc">+</span><span class="fu">geom_point</span>()<span class="sc">+</span><span class="fu">geom_line</span>()<span class="sc">+</span><span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Year"</span>, <span class="at">y =</span> <span class="st">"Number of incoming refugees from Afghanistan"</span>, <span class="at">title =</span> <span class="st">"1983, 2001 and 2016 saw record highs in incoming Afghan refugees"</span>)<span class="sc">+</span><span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x=</span><span class="dv">1990</span>, <span class="at">y=</span><span class="dv">2950</span>, <span class="at">label=</span><span class="st">"Highest amount of incoming Afghan refugees in 1983"</span>, <span class="at">color=</span><span class="st">"red"</span>)</span>
-<span id="cb11-111"><a href="#cb11-111"></a><span class="in">```</span></span>
+<span id="cb11-32"><a href="#cb11-32"></a>I will try to publish this analysis on <span class="co">[</span><span class="ot">Github Pages</span><span class="co">](https://quarto.org/docs/publishing/github-pages.html)</span>, and it will be used for a reporting project on this same topic with Jazzmin Jiwa.</span>
+<span id="cb11-33"><a href="#cb11-33"></a></span>
+<span id="cb11-34"><a href="#cb11-34"></a></span>
+<span id="cb11-37"><a href="#cb11-37"></a><span class="in">```{r}</span></span>
+<span id="cb11-38"><a href="#cb11-38"></a><span class="co">#| label: load-pkgs</span></span>
+<span id="cb11-39"><a href="#cb11-39"></a><span class="co">#| code-summary: "Packages"</span></span>
+<span id="cb11-40"><a href="#cb11-40"></a><span class="co">#| message: false</span></span>
+<span id="cb11-41"><a href="#cb11-41"></a></span>
+<span id="cb11-42"><a href="#cb11-42"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb11-43"><a href="#cb11-43"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb11-44"><a href="#cb11-44"></a><span class="in">```</span></span>
+<span id="cb11-45"><a href="#cb11-45"></a></span>
+<span id="cb11-46"><a href="#cb11-46"></a><span class="fu">## Securing our refugee microdata</span></span>
+<span id="cb11-47"><a href="#cb11-47"></a></span>
+<span id="cb11-48"><a href="#cb11-48"></a>**From Chris Parson's data:** The first thing I want to do is combine two separate datasets with refugee microdata, and narrow the data down to only show rows where the birth or citizenship country is 'Afghanistan.' (I did this separately in R.) The below dataframe includes both datasets from Parson's data, where each row has 'afghanistan' for either the birth or citizenship country. It includes a column I added to indicate the current age of each refugee.</span>
+<span id="cb11-49"><a href="#cb11-49"></a></span>
+<span id="cb11-52"><a href="#cb11-52"></a><span class="in">```{r}</span></span>
+<span id="cb11-53"><a href="#cb11-53"></a><span class="co">#| label: data-head</span></span>
+<span id="cb11-54"><a href="#cb11-54"></a></span>
+<span id="cb11-55"><a href="#cb11-55"></a>af_ref <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"af_refugee_microdata.csv"</span>,<span class="at">stringsAsFactors=</span>F)</span>
+<span id="cb11-56"><a href="#cb11-56"></a><span class="fu">head</span>(af_ref)</span>
+<span id="cb11-57"><a href="#cb11-57"></a><span class="in">```</span></span>
+<span id="cb11-58"><a href="#cb11-58"></a>This dataframe has <span class="in">`r nrow(af_ref)`</span> rows, which means it looks at <span class="in">`r nrow(af_ref)`</span> individual refugees.</span>
+<span id="cb11-59"><a href="#cb11-59"></a></span>
+<span id="cb11-60"><a href="#cb11-60"></a><span class="fu">## Exploring our data by year</span></span>
+<span id="cb11-61"><a href="#cb11-61"></a></span>
+<span id="cb11-62"><a href="#cb11-62"></a>The most important question for this particular reporting project is, have incoming refugees from Afghanistan increased over the years, particularly after the U.S. invaded Afghanistan in 2001? Grouping the data by year looks like this:</span>
+<span id="cb11-63"><a href="#cb11-63"></a></span>
+<span id="cb11-66"><a href="#cb11-66"></a><span class="in">```{r}</span></span>
+<span id="cb11-67"><a href="#cb11-67"></a><span class="co">#| label: by-year</span></span>
+<span id="cb11-68"><a href="#cb11-68"></a></span>
+<span id="cb11-69"><a href="#cb11-69"></a>by_year <span class="ot">&lt;-</span> <span class="fu">group_by</span>(af_ref,year)</span>
+<span id="cb11-70"><a href="#cb11-70"></a>by_year <span class="ot">&lt;-</span> <span class="fu">summarize</span>(by_year,<span class="at">refugees=</span><span class="fu">n</span>())</span>
+<span id="cb11-71"><a href="#cb11-71"></a><span class="fu">print</span>(by_year, <span class="at">n =</span> <span class="cn">Inf</span>)</span>
+<span id="cb11-72"><a href="#cb11-72"></a><span class="in">```</span></span>
+<span id="cb11-73"><a href="#cb11-73"></a></span>
+<span id="cb11-74"><a href="#cb11-74"></a>Our most important finding from this view is that we don't have any data beyond 2008. We also see that the years the U.S. saw the most incoming refugees were 1983 and 2001. Let's see what this looks like:</span>
+<span id="cb11-75"><a href="#cb11-75"></a></span>
+<span id="cb11-78"><a href="#cb11-78"></a><span class="in">```{r}</span></span>
+<span id="cb11-79"><a href="#cb11-79"></a><span class="co">#| label: fig-line</span></span>
+<span id="cb11-80"><a href="#cb11-80"></a><span class="co">#| fig-cap: "Incoming refugees from Afghanistan by year, 1975-2008"</span></span>
+<span id="cb11-81"><a href="#cb11-81"></a></span>
+<span id="cb11-82"><a href="#cb11-82"></a><span class="fu">ggplot</span>(by_year, <span class="fu">aes</span>(<span class="at">x=</span>year, <span class="at">y=</span>refugees))<span class="sc">+</span><span class="fu">geom_line</span>()</span>
+<span id="cb11-83"><a href="#cb11-83"></a></span>
+<span id="cb11-84"><a href="#cb11-84"></a><span class="in">```</span></span>
+<span id="cb11-85"><a href="#cb11-85"></a></span>
+<span id="cb11-86"><a href="#cb11-86"></a>Let's add our PRM data, which goes from 2008 to 2023, and should give us a fuller picture of how incoming refugee numbers have fluctuated over time. <span class="co">[</span><span class="ot">We should probably FOIA for pre-2008 data from PRM in order to be able to compare the numbers with Chris Parson's microdata.</span><span class="co">]</span></span>
+<span id="cb11-87"><a href="#cb11-87"></a></span>
+<span id="cb11-90"><a href="#cb11-90"></a><span class="in">```{r}</span></span>
+<span id="cb11-91"><a href="#cb11-91"></a><span class="co">#| label: append-PRM</span></span>
+<span id="cb11-92"><a href="#cb11-92"></a></span>
+<span id="cb11-93"><a href="#cb11-93"></a>af_ref_PRM <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"PRM_af_year.csv"</span>,<span class="at">stringsAsFactors=</span>F)</span>
+<span id="cb11-94"><a href="#cb11-94"></a>PRM_by_year <span class="ot">&lt;-</span> <span class="fu">select</span>(af_ref_PRM, year, fy_total)</span>
+<span id="cb11-95"><a href="#cb11-95"></a>PRM_by_year <span class="ot">&lt;-</span> <span class="fu">filter</span>(PRM_by_year,year<span class="sc">&gt;</span><span class="dv">2008</span>)</span>
+<span id="cb11-96"><a href="#cb11-96"></a>PRM_by_year <span class="ot">&lt;-</span> <span class="fu">arrange</span>(PRM_by_year,year)</span>
+<span id="cb11-97"><a href="#cb11-97"></a><span class="fu">colnames</span>(PRM_by_year)[<span class="dv">2</span>]<span class="ot">=</span><span class="st">"refugees"</span></span>
+<span id="cb11-98"><a href="#cb11-98"></a>all_years <span class="ot">&lt;-</span> <span class="fu">rbind</span>(by_year, PRM_by_year)</span>
+<span id="cb11-99"><a href="#cb11-99"></a>all_years <span class="ot">&lt;-</span> all_years[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">35</span>), ]</span>
+<span id="cb11-100"><a href="#cb11-100"></a><span class="fu">print</span>(all_years,<span class="at">n=</span><span class="cn">Inf</span>)</span>
+<span id="cb11-101"><a href="#cb11-101"></a><span class="in">```</span></span>
+<span id="cb11-102"><a href="#cb11-102"></a></span>
+<span id="cb11-103"><a href="#cb11-103"></a>Some notes on this tibble: This combines two different datasets -- one downloaded from the State Dept's <span class="co">[</span><span class="ot">Bureau of Population, Refugees, and Migration</span><span class="co">](https://www.wrapsnet.org/admissions-and-arrivals/)</span> and one from <span class="co">[</span><span class="ot">Chris Parson's microdata</span><span class="co">](https://www.refugeeresettlementdata.com/)</span> on refugee resettlement. Both of these datasets were narrowed to just total refugees by year from Afghanistan and then combined. Chris Parson's data is from 1975 to 2008, and the PRM data is 2009 to 2023. <span class="kw">&lt;span</span> <span class="er">style</span><span class="ot">=</span><span class="st">"color:purple"</span><span class="kw">&gt;</span>FOIA: Ideally, we will be able to request PRM data from before 2008 in order to be able to compare Parson's data to the State Dept's.<span class="kw">&lt;/span&gt;</span> We removed one row from Parson's data in which year was N/A and refugees was 2.</span>
+<span id="cb11-104"><a href="#cb11-104"></a></span>
+<span id="cb11-105"><a href="#cb11-105"></a>Let's see what it looks like if we create a line chart out of our new, more complete dataset.</span>
+<span id="cb11-106"><a href="#cb11-106"></a></span>
+<span id="cb11-109"><a href="#cb11-109"></a><span class="in">```{r}</span></span>
+<span id="cb11-110"><a href="#cb11-110"></a><span class="co">#| label: fig-line2</span></span>
+<span id="cb11-111"><a href="#cb11-111"></a><span class="co">#| fig-cap: "Incoming refugees from Afghanistan by year, 1975-2023"</span></span>
 <span id="cb11-112"><a href="#cb11-112"></a></span>
-<span id="cb11-113"><a href="#cb11-113"></a>@fig-line2 tells us some notable information for our reporting: the highest amounts of incoming refugees are now arriving in 1983, 2016 and 2001. We should think through what was happening around these years to create a sharp increase in incoming refugees -- there are some obvious answers here. I think it'd also be useful to compare these numbers to numbers from Iraq.</span>
-<span id="cb11-114"><a href="#cb11-114"></a></span>
-<span id="cb11-115"><a href="#cb11-115"></a><span class="fu">## Exploring our microdata by location</span></span>
-<span id="cb11-116"><a href="#cb11-116"></a></span>
-<span id="cb11-117"><a href="#cb11-117"></a>tktktk</span>
+<span id="cb11-113"><a href="#cb11-113"></a><span class="fu">ggplot</span>(all_years, <span class="fu">aes</span>(<span class="at">x=</span>year,<span class="at">y=</span>refugees,<span class="at">group =</span> <span class="dv">1</span>))<span class="sc">+</span><span class="fu">geom_point</span>()<span class="sc">+</span><span class="fu">geom_line</span>()<span class="sc">+</span><span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Year"</span>, <span class="at">y =</span> <span class="st">"Number of incoming refugees from Afghanistan"</span>, <span class="at">title =</span> <span class="st">"1983, 2001 and 2016 saw record highs in incoming Afghan refugees"</span>)<span class="sc">+</span><span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x=</span><span class="dv">1990</span>, <span class="at">y=</span><span class="dv">2950</span>, <span class="at">label=</span><span class="st">"Highest amount of incoming Afghan refugees in 1983"</span>, <span class="at">color=</span><span class="st">"red"</span>)</span>
+<span id="cb11-114"><a href="#cb11-114"></a><span class="in">```</span></span>
+<span id="cb11-115"><a href="#cb11-115"></a></span>
+<span id="cb11-116"><a href="#cb11-116"></a>@fig-line2 tells us some notable information for our reporting: the highest amounts of incoming refugees are now arriving in 1983, 2016 and 2001. We should think through what was happening around these years to create a sharp increase in incoming refugees -- there are some obvious answers here. I think it'd also be useful to compare these numbers to numbers from Iraq.</span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

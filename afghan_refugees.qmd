@@ -102,7 +102,3 @@ ggplot(all_years, aes(x=year,y=refugees,group = 1))+geom_point()+geom_line()+lab
 ```
 
 @fig-line2 tells us some notable information for our reporting: the highest amounts of incoming refugees are now arriving in 1983, 2016 and 2001. We should think through what was happening around these years to create a sharp increase in incoming refugees -- there are some obvious answers here. I think it'd also be useful to compare these numbers to numbers from Iraq.
-
-## Exploring our microdata by location
-
-tktktk
